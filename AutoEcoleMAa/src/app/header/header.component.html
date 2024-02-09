@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <span>
+    AUTO ECOLE Maa
+  </span>
+  <span class="space-buttons"></span>
+  <button *ngIf="! isLoggedIn()" routerLink="/login" mat-raised-button color="primary">Login</button>
+  <button *ngIf="isLoggedIn()" (click)="logout()" mat-raised-button color="warn">Logout</button>
+
+
+</mat-toolbar>
+<mat-toolbar *ngIf="isLoggedIn()">
+  <button  mat-raised-button color="primary" routerLink="/">home</button>
+  <button *ngIf="isAdmin()" mat-raised-button routerLink="/ShowStudentDetails">show student details </button>
+  <button *ngIf="isAdmin()" mat-raised-button routerLink="/addNewStudent">Add Student </button>
+  <button *ngIf="isAdmin()" mat-raised-button routerLink="/calander">calander </button>
+</mat-toolbar>
+
+
+
+

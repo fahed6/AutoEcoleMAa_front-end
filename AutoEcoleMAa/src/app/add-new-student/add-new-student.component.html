@@ -1,0 +1,98 @@
+<div class="container mt-5">
+    <div class="card p-2">
+        <div class="row">
+            <div class="col-6">
+                <form #studentForm="ngForm" (ngSubmit)="addStudent(studentForm)">
+                    <h1>Student Information</h1>
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Student Name</mat-label>
+                        <input [(ngModel)]="student.userFirstName" name="userFirstName" matInput placeholder="Student Name">
+                        
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Student Last Name</mat-label>
+                        <input [(ngModel)]="student.userLastName" name="userLastName" matInput placeholder="Student Last Name" >
+                        
+                    </mat-form-field>
+                        
+                    <mat-form-field *ngIf="isNewStudent" appearance="outline" class="w-100" >
+                        <mat-label >Student Password</mat-label>
+                        <input [(ngModel)]="student.userPassword" name="userPassword" matInput placeholder="Student Password">
+                        
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Student Cin</mat-label>
+                        <input [(ngModel)]="student.studentCin" name="studentCin" matInput placeholder="Student Cin">
+                        
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>year-month-day</mat-label>
+                        <input [(ngModel)]="student.studentDateCin" name="studentDateCin" matInput placeholder="year-month-day">
+                        
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Student Address</mat-label>
+                        <input [(ngModel)]="student.studentAddress" name="studentAddress" matInput placeholder="Student Address">
+                        
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Student Phone</mat-label>
+                        <input [(ngModel)]="student.studentPhone" name="studentPhone" matInput placeholder="Student Phone">
+                        
+                    </mat-form-field>
+
+                    <div align="end">
+                        <button mat-stroked-button color="primary" style="margin-right: 3px;">Clear</button>
+                        <button type="submit" mat-stroked-button color="primary" *ngIf="isNewStudent">Add Student</button>
+                        <button type="submit" mat-stroked-button color="primary" *ngIf="!isNewStudent">Update Student</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="col-6">
+                <div>
+                    <div class="dropzone"
+                    appDrag
+                    (files)="fileDropped($event)">
+                   <div class="text-wrapper">
+                       <div class="centered">
+                           Drag and drop your file or
+                           <a (click)="selectFile.click()"
+                              class="browse-button">browse</a>
+                           a file
+                       </div>
+
+                   </div>
+               </div>
+                    <input type="file" style="display: none;" multiple value="select" #selectFile (change)="onFileSelected($event)">
+                </div>
+                <div class="mt-5">
+                    <div class="row">
+                        <mat-grid-list cols="4" rowHeight="1:1">
+                            <mat-grid-tile *ngFor="let file of student.studentImage; let i = index;">
+                                <div style="position: relative">
+                                    <span class="btn-remove-image"
+                                    (click)="removeImages(i)">x</span>
+                                    <img [src]="file.url" width="100px" height="100px">
+                                </div>
+
+                            </mat-grid-tile>
+
+                        </mat-grid-list>
+                    </div>
+
+                </div>
+                
+             </div>
+             
+        </div>
+
+    </div>
+
+</div>
